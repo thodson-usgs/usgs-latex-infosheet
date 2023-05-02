@@ -1,40 +1,76 @@
 % This is a simple sample document.  For more complicated documents take a look in the exercise tab. Note that everything that comes after a % symbol is treated as comment and ignored when the code is compiled.
 \documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
 
-\usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
-\usepackage{blindtext} % This package allows you to create dummy text in your document
+\usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage[margin=0.5in]{geometry}
-
+\usepackage{blindtext}
+\usepackage[top=0.5in, left=0.5in, right=0.5in, bottom=2in]{geometry}
+%\usepackage{showframe}
 \usepackage{fancyhdr}
 \usepackage{setspace}
 
-\renewcommand{\baselinestretch}{1.5} 
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{1.3in}
 
-\pagestyle{plain}
-\fancyhf{}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  %\null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\huge \bf \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
 
-%\lhead{\includegraphics[height=0.5in]{assets/USGS_ID_black.pdf}}
-\lhead{\includegraphics[height=0.8in]{assets/USGS_ID_black.pdf}}
-%\rhead{\Huge \bf The Rating Curve Challenge}
 
-\setlength\headheight{1.3in}
-%\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{firststyle}
+{
+   \fancyhf{}
+   \lhead{\includegraphics[height=0.8in]{assets/USGS_ID_black.pdf}
+   }
+   %\fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+}
 
 
-\title{Infosheet} % Sets article title
-\author{Timothy O. Hodson} % Sets authors name
+\title{Infosheet template}% Sets article title
+\author{Timothy Hodson$^1$ \and Another Author$^2$} % Sets authors name
+\date{ \small
+    $^1$U.S. Geological Survey, 
+    $^2$Some Institution%
+    }
 
 % The preamble ends with the command \begin{document}
 \begin{document} % All begin commands must be paired with an end command somewhere
 \maketitle % creates title using information in preamble (title, author, date)
-\thispagestyle{fancy}
+\thispagestyle{firststyle}
 
-\begin{abstract}
-    \blindtext
-\end{abstract}
+%\begin{abstract}
+%    \blindtext
+%\end{abstract}
 
-\section{Introduction} % creates a section
+\section*{Introduction} % creates a section
+\blindtext 
+\blindtext 
+
+\section*{Results}
+\blindtext 
 \blindtext
+
+\section*{Code Availability}
+
+\section*{References} % creates a section
+
 
 \end{document} % This is the end of the document
